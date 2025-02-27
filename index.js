@@ -4,7 +4,11 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: 'https://kedy-todo-frontend.vercel.app', // Sadece frontend URL'ine izin ver
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], // Desteklenen HTTP metotları
+  allowedHeaders: ['Content-Type', 'Authorization'] // Desteklenen header’lar
+}));
 app.use(express.json());
 
 // MongoDB bağlantısı
